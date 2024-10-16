@@ -1,106 +1,22 @@
-import { pool } from "../config/database";
+import express from "express"
+import featuresController from "../controllers/featuresController.js";
 
-const getAllExteriors = async (req, res) => {
-    try {
-        const query = `SELECT * from exteriors`;
+const router = express.Router();
 
-        const results = await pool.query(query);
-        res.status(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
+// Exteriors
+router.get('/exteriors', featuresController.getAllExteriors);
+router.get('/exteriors/:id', featuresController.getExteriorById);
 
-const getExteriorById = async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const query = `SELECT * from exteriors WHERE id = $1`
+// Roofs
+router.get('/roofs', featuresController.getAllRoofs);
+router.get('/roofs/:id', featuresController.getRoofById);
 
-        const results = pool.query(query, [id]);
-        res.stauts(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
+// Wheels
+router.get('/wheels', featuresController.getAllWheels);
+router.get('/wheels/:id', featuresController.getWheelById);
 
-const getAllRoofs = async (req, res) => {
-    try {
-        const query = `SELECT * FROM roofs`;
+// Interiors
+router.get('/interiors', featuresController.getAllInteriors);
+router.get('/interiors/:id', featuresController.getInteriorById);
 
-        const results = pool.query(query);
-        res.status(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
-
-const getRoofById = async (req, res) => {
-    const id = parseInt(req,params.id);
-    
-    try {
-        const query = `SELECT * FROM roofs WHERE id = $1`;
-
-        const results = pool.query(query, [id]);
-        res.stauts(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
-
-const getAllWheels = async (req, res) => {
-    try {
-        const query = `SELECT * FROM wheels`;
-
-        const results = pool.query(query);
-        res.status(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
-
-const getWheelById = async (req, res) => {
-    const id = parseInt(req.params.id);
-
-    try {
-        const query = `SELECT * FROM wheels WHERE id = $1`;
-
-        const results = pool.query(query, [id]);
-        res.status(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
-
-const getAllInteriors = async (req, res) => {
-    try {
-        const query = `SELECT * FROM interiors`;
-
-        const results = pool.query(query);
-        res.status(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
-
-const getInteriorById = async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const query = `SELECT * FROM interiors WHERE id = $1`;
-
-        const results = pool.query(query, [id]);
-        res.status(200).json(results.rows);
-    } catch(err) {
-        res.status(500).json({error: err.message});
-    }
-}
-
-export default {
-    getAllExteriors,
-    getExteriorById,
-    getAllRoofs,
-    getRoofById,
-    getAllWheels,
-    getWheelById,
-    getAllInteriors,
-    getInteriorById
-}
+export default router
