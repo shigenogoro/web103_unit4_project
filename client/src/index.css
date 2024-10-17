@@ -14,6 +14,10 @@
     --form-element-placeholder-color: gray;
 }
 
+:root {
+    --scrollbar-width: 0px;
+}
+
 #root h1 {
     font-size: 3rem;
     margin-bottom: 0px;
@@ -56,6 +60,7 @@
     margin-bottom: 5px;
 }
 
+
 #root article header {
     border-bottom: 0px;
     margin-bottom: 10px;
@@ -65,4 +70,12 @@
     border-top: 0px;
     margin-top: 0px;
     display: flex;
+}
+
+article {
+    margin: var(--block-spacing-vertical) 0;
+    padding: var(--block-spacing-vertical) var(--block-spacing-horizontal);
+    border-radius: var(--border-radius);
+    background: var(--card-background-color);
+    box-shadow: var(--card-box-shadow);
 }

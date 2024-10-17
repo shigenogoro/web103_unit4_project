@@ -19,7 +19,7 @@ const App = () => {
     },
     {
       path: '/customcars/:id',
-      element: <CarDetails title='BOLT BUCKET | View' />
+      element: <CarDetails title='BOLT BUCKET | View'/>
     },
     {
       path: '/edit/:id',
